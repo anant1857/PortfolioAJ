@@ -234,7 +234,7 @@ const Home = () => {
               <div className="flex items-center text-[#cccccc] text-xs">
                 <ChevronDown className="w-3 h-3 mr-1 text-[#858585]" />
                 <Code2 className="w-3 h-3 mr-2 text-[#4fc1ff]" />
-                <span className="font-mono">_amolsonawane/</span>
+                <span className="font-mono">_anantjoshi/</span>
               </div>
             </div>
 
@@ -315,7 +315,7 @@ const Home = () => {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 text-[#cccccc] text-xs sm:text-sm">
       
       <a
-        href="mailto:amolsonawane1026@gmail.com"
+        href="mailto:joshianant1857@gmail.com"
         className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
         target="_blank" 
         rel="noopener noreferrer"
