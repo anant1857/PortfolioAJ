@@ -9,117 +9,91 @@ const Footer = () => {
   const socialLinks = [
     {
       name: "_instagram",
-      href: "https://instagram.com/amolsonawane",
+      href: "https://www.instagram.com/a_n_a_n_t_1857/",
       icon: Instagram,
       color: "text-pink-400"
     },
     {
       name: "_linkedin",
-      href: "https://linkedin.com/in/amolsonawane",
+      href: "https://www.linkedin.com/in/anant-joshi-a847b6201/",
       icon: Linkedin,
       color: "text-blue-400"
     },
     {
       name: "_facebook",
-      href: "https://facebook.com/amolsonawane",
+      href: "https://www.facebook.com/anant.joshi.524381",
       icon: Facebook,
       color: "text-blue-500"
     },
     {
-      name: "_twitter",
-      href: "https://twitter.com/amolsonawane",
-      icon: Twitter,
-      color: "text-sky-400"
-    }
-  ];
-
-  const contactInfo = [
-    {
       name: "_email",
-      value: "amolsonawane1026@gmail.com",
+      value: "joshianant1857@gmail.com",
       icon: Mail,
-      href: "mailto:amolsonawane1026@gmail.com",
+      href: "mailto:joshianant1857@gmail.com",
       color: "text-green-400"
     },
     {
       name: "_phone",
-      value: "+91 7558379918",
+      value: "+91 8847769979",
       icon: Phone,
-      href: "tel:+917558379918",
+      href: "tel:+918847769979",
       color: "text-orange-400"
     }
   ];
 
-  return (
-    <footer className="bg-[#1e1e1e] border-t border-[#2d2d30] w-full flex flex-col sm:flex-row h-auto sm:h-14 items-center shadow-sm font-mono text-sm">
-      {/* Center: Social Icons and Contact */}
-      <div className="flex flex-wrap sm:flex-nowrap h-auto sm:h-full w-full sm:flex-1">
-        {socialLinks.map((social) => (
-          <Link
-            key={social.name}
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setActiveSection(social.name)}
-            className={`
-              px-3 py-2 sm:py-0 h-auto sm:h-full flex items-center text-sm border-b sm:border-b-0 sm:border-r border-[#2d2d30] min-w-[100px] sm:min-w-[120px] justify-center
-              transition-all duration-200 relative group
-              ${activeSection === social.name
-                ? `${social.color} bg-[#1e1e1e] font-medium`
-                : "text-[#969696] hover:text-[#cccccc] hover:bg-[#252526]"
-              }
-            `}
-          >
-            <span className="relative flex items-center gap-2 whitespace-nowrap">
-              <social.icon size={16} />
-              {social.name}
-              {activeSection === social.name && (
-                <div className={`absolute -bottom-[14px] left-0 right-0 h-0.5 ${social.color.replace('text-', 'bg-')}`}></div>
-              )}
-            </span>
-          </Link>
-        ))}
+  const getDisplayValue = () => {
+    const activeLink = socialLinks.find(link => link.name === activeSection);
+    if (activeLink?.value) return activeLink.value;
+    return activeSection.replace("_", "");
+  };
 
-        {contactInfo.map((contact) => (
-          <Link
-            key={contact.name}
-            href={contact.href}
-            onClick={() => setActiveSection(contact.name)}
-            className={`
-              px-3 py-2 sm:py-0 h-auto sm:h-full flex items-center text-sm border-b sm:border-b-0 sm:border-r border-[#2d2d30] min-w-[140px] sm:min-w-[180px] justify-center
-              transition-all duration-200 relative group
-              ${activeSection === contact.name
-                ? `${contact.color} bg-[#1e1e1e] font-medium`
-                : "text-[#969696] hover:text-[#cccccc] hover:bg-[#252526]"
-              }
-            `}
-          >
-            <span className="relative flex items-center gap-2 whitespace-nowrap">
-              <contact.icon size={16} />
-              {contact.name}
-              {activeSection === contact.name && (
-                <div className={`absolute -bottom-[14px] left-0 right-0 h-0.5 ${contact.color.replace('text-', 'bg-')}`}></div>
-              )}
-            </span>
-          </Link>
-        ))}
+  return (
+    <footer className="bg-[#1e1e1e] border-t border-[#2d2d30] w-full flex flex-col lg:flex-row h-auto lg:h-14 items-stretch shadow-sm font-mono text-sm">
+      {/* Social Links and Contact Section */}
+      <div className="flex flex-1 h-auto lg:h-full">
+        {/* All Links */}
+        <div className="flex flex-1 min-w-0">
+          {socialLinks.map((social, index) => (
+            <Link
+              key={social.name}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setActiveSection(social.name)}
+              className={`
+                flex-1 px-2 sm:px-4 py-3 lg:py-0 h-auto lg:h-full flex items-center justify-center text-sm 
+                border-r border-[#2d2d30] transition-all duration-200 relative group min-w-0
+                ${activeSection === social.name
+                  ? `${social.color} bg-[#252526] font-medium`
+                  : "text-[#969696] hover:text-[#cccccc] hover:bg-[#252526]"
+                }
+              `}
+            >
+              <span className="relative flex items-center gap-2 whitespace-nowrap overflow-hidden">
+                <social.icon size={16} className="flex-shrink-0" />
+                <span className="hidden sm:inline truncate">{social.name}</span>
+                {activeSection === social.name && (
+                  <div className={`absolute -bottom-[12px] lg:-bottom-[14px] left-0 right-0 h-0.5 ${social.color.replace('text-', 'bg-')}`}></div>
+                )}
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
 
-      {/* Right: Contact Display */}
-      <div className="w-full sm:w-auto h-auto sm:h-full bg-[#1e1e1e] flex items-center justify-center sm:justify-end px-4 border-t sm:border-t-0 sm:border-l border-[#2d2d30] min-w-[auto] sm:min-w-[280px] mt-2 sm:mt-0">
+      {/* Contact Display and Status */}
+      <div className="w-full lg:w-auto lg:min-w-[320px] h-auto lg:h-full bg-[#1e1e1e] flex items-center justify-between px-4 py-3 lg:py-0 border-t lg:border-t-0 lg:border-l border-[#2d2d30]">
         {/* Contact Info Display */}
-        <div className="flex items-center space-x-1 text-[#969696] text-xs mr-0 sm:mr-6 whitespace-nowrap">
-          <span>~/contact</span>
-          <span>/</span>
-          <span className="text-[#cccccc]">
-            {activeSection === "_email" ? "amolsonawane1026@gmail.com" :
-             activeSection === "_phone" ? "+91 7558379918" :
-             activeSection.replace("_", "")}
+        <div className="flex items-center space-x-1 text-[#969696] text-xs flex-1 min-w-0">
+          <span className="flex-shrink-0">~/contact</span>
+          <span className="flex-shrink-0">/</span>
+          <span className="text-[#cccccc] truncate">
+            {getDisplayValue()}
           </span>
         </div>
 
         {/* Status Indicator */}
-        <div className="flex items-center space-x-2 ml-4">
+        <div className="flex items-center space-x-2 ml-4 flex-shrink-0">
           <div className="w-2 h-2 bg-[#27ca3f] rounded-full animate-pulse"></div>
           <span className="text-[#cccccc] text-xs">Online</span>
         </div>

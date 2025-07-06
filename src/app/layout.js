@@ -15,8 +15,8 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Portfolio | Amol Sonawane",
-  description: "Amol Sonawane Portfolio",
+  title: "Portfolio | Anant Joshi",
+  description: "Anant Joshi Portfolio",
   icons: {
     icon: "/Images/ProfileImage.webp",
   },

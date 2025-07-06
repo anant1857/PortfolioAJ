@@ -152,7 +152,7 @@ const Navbar = () => {
           {/* File Path */}
           <div className="hidden lg:flex items-center space-x-1 text-[#888888] text-xs mr-6 font-mono">
             <span className="text-[#007acc]">~/</span>
-            <span>amolsonawane1026:</span>
+            <span>anantjoshi1857:</span>
             <span className="text-[#cccccc]">
               {activeTab.replace("_", "").replace("-", "_")}.jsx
             </span>

@@ -191,37 +191,38 @@ const AboutPage = () => {
           </div>
         </div>
 
-        {/* Stats Dashboard */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-[#252526] border border-[#2d2d30] rounded-lg p-4">
-            <div className="flex items-center space-x-2 mb-2">
-              <Code2 className="w-5 h-5 text-[#007acc]" />
-              <span className="text-[#858585] text-sm">Lines of Code</span>
-            </div>
-            <div className="text-2xl font-bold text-[#cccccc]">104.7K</div>
-          </div>
-          <div className="bg-[#252526] border border-[#2d2d30] rounded-lg p-4">
-            <div className="flex items-center space-x-2 mb-2">
-              <GitBranch className="w-5 h-5 text-[#007acc]" />
-              <span className="text-[#858585] text-sm">Total Commits</span>
-            </div>
-            <div className="text-2xl font-bold text-[#cccccc]">6,702</div>
-          </div>
-          <div className="bg-[#252526] border border-[#2d2d30] rounded-lg p-4">
-            <div className="flex items-center space-x-2 mb-2">
-              <Calendar className="w-5 h-5 text-[#007acc]" />
-              <span className="text-[#858585] text-sm">Experience</span>
-            </div>
-            <div className="text-2xl font-bold text-[#cccccc]">5 Years</div>
-          </div>
-          <div className="bg-[#252526] border border-[#2d2d30] rounded-lg p-4">
-            <div className="flex items-center space-x-2 mb-2">
-              <Coffee className="w-5 h-5 text-[#007acc]" />
-              <span className="text-[#858585] text-sm">Coffee Cups</span>
-            </div>
-            <div className="text-2xl font-bold text-[#cccccc]">∞</div>
-          </div>
-        </div>
+       {/* Stats Dashboard */}
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+  <div className="bg-[#252526] border border-[#2d2d30] rounded-lg p-4">
+    <div className="flex items-center space-x-2 mb-2">
+      <Code2 className="w-5 h-5 text-[#007acc]" />
+      <span className="text-[#858585] text-sm">Lines of Code</span>
+    </div>
+    <div className="text-2xl font-bold text-[#cccccc]">15K+</div>
+  </div>
+  <div className="bg-[#252526] border border-[#2d2d30] rounded-lg p-4">
+    <div className="flex items-center space-x-2 mb-2">
+      <GitBranch className="w-5 h-5 text-[#007acc]" />
+      <span className="text-[#858585] text-sm">Total Commits</span>
+    </div>
+    <div className="text-2xl font-bold text-[#cccccc]">800+</div>
+  </div>
+  <div className="bg-[#252526] border border-[#2d2d30] rounded-lg p-4">
+    <div className="flex items-center space-x-2 mb-2">
+      <Calendar className="w-5 h-5 text-[#007acc]" />
+      <span className="text-[#858585] text-sm">Experience</span>
+    </div>
+    <div className="text-2xl font-bold text-[#cccccc]">1 Year</div>
+  </div>
+  <div className="bg-[#252526] border border-[#2d2d30] rounded-lg p-4">
+    <div className="flex items-center space-x-2 mb-2">
+      <Coffee className="w-5 h-5 text-[#007acc]" />
+      <span className="text-[#858585] text-sm">Coffee Cups</span>
+    </div>
+    <div className="text-2xl font-bold text-[#cccccc]">∞</div>
+  </div>
+</div>
+
 
         {/* About Section */}
         <div className="grid lg:grid-cols-3 gap-8 mb-8">
@@ -234,13 +235,13 @@ const AboutPage = () => {
             </h2>
             <div className="space-y-4 text-[#d4d4d4]">
               <p>
-                Passionate full-stack developer with 5+ years of experience building scalable web applications. 
-                I specialize in modern JavaScript frameworks and cloud technologies, with a strong focus on 
-                clean code and performance optimization.
+               I’m a passionate Frontend Developer with over 1 year of hands-on experience building dynamic, responsive, and user-friendly web applications. I specialize in React.js, JavaScript, HTML5, and CSS3, creating seamless interfaces that enhance user experience and drive engagement.
               </p>
               <p>
-                Currently leading development teams and architecting microservices that serve hundreds of 
-                thousands of users. I enjoy solving complex problems and mentoring other developers in their journey.
+                Throughout my journey, I’ve contributed to educational platforms, internal tools (like CMS, LMS, and billing systems), and client-facing websites, focusing on clean code, performance, and accessibility.
+              </p>
+              <p>
+                I’m always eager to learn new technologies, collaborate with teams, and turn ideas into interactive, modern web experiences. My goal is to create interfaces that not only look great but also deliver value to users and businesses alike.
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
                 {["Web Development", "Cloud Architecture", "Team Leadership", "Open Source"].map((interest, index) => (
@@ -423,15 +424,6 @@ const AboutPage = () => {
                         ))}
                       </div>
                     </div>
-                    
-                    {/* Run button */}
-                    <div className="flex items-center space-x-2 mt-4">
-                      <button className="flex items-center space-x-2 bg-[#007acc] hover:bg-[#005a9e] text-white px-4 py-2 rounded text-sm transition-colors">
-                        <Play className="w-4 h-4" />
-                        <span>Run Experience</span>
-                      </button>
-                      <div className="text-[#6a9955] text-xs">// Click to see more details</div>
-                    </div>
                   </div>
                   
                   {/* Decorative code highlight */}
@@ -450,7 +442,7 @@ const AboutPage = () => {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <a 
-              href="mailto:amolsonawane1026@gmail.com" 
+              href="mailto:joshianant1857@gmail.com" 
               className="flex items-center space-x-3 p-4 bg-[#1e1e1e] rounded-lg hover:bg-[#2d2d30] transition-colors border border-[#2d2d30] hover:border-[#007acc] group"
             >
               <Mail className="w-5 h-5 text-[#007acc] group-hover:scale-110 transition-transform" />
@@ -460,7 +452,7 @@ const AboutPage = () => {
               </div>
             </a>
             <a 
-              href="https://linkedin.com/in/amol-sonawane-663007209" 
+              href="https://www.linkedin.com/in/anant-joshi-a847b6201/" 
               className="flex items-center space-x-3 p-4 bg-[#1e1e1e] rounded-lg hover:bg-[#2d2d30] transition-colors border border-[#2d2d30] hover:border-[#007acc] group"
             >
               <Linkedin className="w-5 h-5 text-[#007acc] group-hover:scale-110 transition-transform" />
@@ -470,7 +462,7 @@ const AboutPage = () => {
               </div>
             </a>
             <a 
-              href="https://github.com/amolsonawane" 
+              href="https://github.com/anant1857" 
               className="flex items-center space-x-3 p-4 bg-[#1e1e1e] rounded-lg hover:bg-[#2d2d30] transition-colors border border-[#2d2d30] hover:border-[#007acc] group"
             >
               <Github className="w-5 h-5 text-[#007acc] group-hover:scale-110 transition-transform" />
@@ -480,7 +472,7 @@ const AboutPage = () => {
               </div>
             </a>
             <a 
-              href="tel:+919876543210" 
+              href="tel:+918847769979" 
               className="flex items-center space-x-3 p-4 bg-[#1e1e1e] rounded-lg hover:bg-[#2d2d30] transition-colors border border-[#2d2d30] hover:border-[#007acc] group"
             >
               <Phone className="w-5 h-5 text-[#007acc] group-hover:scale-110 transition-transform" />
