@@ -271,7 +271,7 @@ const Home = () => {
                     <div className="text-green-400 text-xs uppercase tracking-wider font-mono">Projects</div>
                   </div>
                   <div className="text-[#cccccc] font-medium text-lg group-hover:text-green-400 transition-colors">
-                    25+ Completed
+                    5+ Completed
                   </div>
                 </div>
 
