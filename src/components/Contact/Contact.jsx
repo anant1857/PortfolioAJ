@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   Mail,
   Phone,
@@ -24,11 +24,22 @@ const validationSchema = Yup.object({
   name: Yup.string().min(2, "Name must be at least 2 characters long.").required("Name is required").trim(),
   email: Yup.string().email("Please enter a valid email.").required("Email is required").trim(),
   phone: Yup.string().min(10, "Phone must be at least 10 characters").required("Phone is required"),
-  query: Yup.string().min(10, "Query must be at least 10 characters").required("Query is required"),
+  message: Yup.string().min(10, "Message must be at least 10 characters").required("Message is required"),
 })
 
 const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+  // Auto-hide success message after 5 seconds
+  useEffect(() => {
+    if (submitStatus?.type === "success") {
+      const timer = setTimeout(() => {
+        setSubmitStatus(null)
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [submitStatus])
 
   const contactInfo = [
     {
@@ -164,33 +175,44 @@ const Contact = () => {
                   {/* Formik Form */}
                   <div className="pl-12">
                     <Formik
-                      initialValues={{ name: "", email: "", phone: "", query: "" }}
+                      initialValues={{ name: "", email: "", phone: "", message: "" }}
                       validationSchema={validationSchema}
-                      onSubmit={async (values, { setSubmitting, resetForm }) => {
+                      onSubmit={async (values, { resetForm }) => {
+                        setLoading(true)
                         setSubmitStatus(null)
+
                         try {
-                          const response = await fetch("/api/contact", {
+                          const res = await fetch("http://localhost:5000/api/contact", {
                             method: "POST",
-                            headers: { "Content-Type": "application/json" },
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
                             body: JSON.stringify(values),
                           })
-                          const data = await response.json()
-                          if (response.ok) {
-                            setSubmitStatus({ type: "success", message: data.message || "Message sent successfully!" })
+
+                          const data = await res.json()
+
+                          if (res.ok) {
+                            setSubmitStatus({
+                              type: "success",
+                              message: "Message sent successfully!",
+                            })
                             resetForm()
                           } else {
                             setSubmitStatus({
                               type: "error",
-                              message: data.error || "Something went wrong. Please try again.",
+                              message: data.error || "Failed to send message.",
                             })
                           }
                         } catch (error) {
+                          console.error("Form submission error:", error)
                           setSubmitStatus({
                             type: "error",
-                            message: "Something went wrong. Please try again.",
+                            message: "Failed to send message. Please try again.",
                           })
+                        } finally {
+                          setLoading(false)
                         }
-                        setSubmitting(false)
                       }}
                     >
                       {({ isSubmitting }) => (
@@ -213,10 +235,7 @@ const Contact = () => {
                               name="name"
                               component="div"
                               className="flex items-center space-x-2 text-[#f48771] text-sm"
-                            >
-                              <AlertCircle className="w-4 h-4" />
-                              <ErrorMessage name="name" />
-                            </ErrorMessage>
+                            />
                           </div>
 
                           {/* Email Field */}
@@ -237,10 +256,7 @@ const Contact = () => {
                               name="email"
                               component="div"
                               className="flex items-center space-x-2 text-[#f48771] text-sm"
-                            >
-                              <AlertCircle className="w-4 h-4" />
-                              <ErrorMessage name="email" />
-                            </ErrorMessage>
+                            />
                           </div>
 
                           {/* Phone Field */}
@@ -261,13 +277,10 @@ const Contact = () => {
                               name="phone"
                               component="div"
                               className="flex items-center space-x-2 text-[#f48771] text-sm"
-                            >
-                              <AlertCircle className="w-4 h-4" />
-                              <ErrorMessage name="phone" />
-                            </ErrorMessage>
+                            />
                           </div>
 
-                          {/* Query Field */}
+                          {/* Message Field */}
                           <div className="space-y-2">
                             <div className="flex items-center space-x-3">
                               <MessageSquare className="w-5 h-5 text-[#007acc]" />
@@ -277,29 +290,26 @@ const Contact = () => {
                             </div>
                             <Field
                               as="textarea"
-                              name="query"
+                              name="message"
                               placeholder="Tell me about your project ideas, questions, or how we can work together..."
                               rows={6}
                               className="w-full bg-[#1e1e1e] border border-[#3e3e42] rounded px-4 py-3 text-[#d4d4d4] placeholder-[#858585] focus:border-[#007acc] focus:outline-none transition-colors font-mono resize-vertical"
                             />
                             <ErrorMessage
-                              name="query"
+                              name="message"
                               component="div"
                               className="flex items-center space-x-2 text-[#f48771] text-sm"
-                            >
-                              <AlertCircle className="w-4 h-4" />
-                              <ErrorMessage name="query" />
-                            </ErrorMessage>
+                            />
                           </div>
 
                           {/* Submit Button */}
                           <div className="pt-4">
                             <button
                               type="submit"
-                              disabled={isSubmitting}
+                              disabled={loading || isSubmitting}
                               className="flex items-center space-x-3 bg-[#007acc] hover:bg-[#005a9e] disabled:bg-[#005a9e] disabled:opacity-50 text-white px-6 py-3 rounded transition-colors font-medium"
                             >
-                              {isSubmitting ? (
+                              {loading || isSubmitting ? (
                                 <>
                                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                                   <span>Sending Message...</span>
@@ -373,7 +383,7 @@ const Contact = () => {
               <div className="space-y-4 text-sm">
                 <div className="flex justify-between">
                   <span className="text-[#858585]">Response Time:</span>
-                  <span className="text-[#4ec9b0]"> 24 hours</span>
+                  <span className="text-[#4ec9b0]">{"< 24 hours"}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#858585]">Availability:</span>
@@ -409,13 +419,12 @@ const Contact = () => {
 
         {/* Footer */}
         <div className="mt-12 text-center text-[#858585] text-sm">
-  <div className="flex items-center justify-center space-x-2 mb-2">
-    <GitBranch className="w-4 h-4" />
-    <span>// Crafted with clean code, coffee, and creativity 🚀</span>
-  </div>
-  <div>Let’s build something amazing together — your vision, my code.</div>
-</div>
-
+          <div className="flex items-center justify-center space-x-2 mb-2">
+            <GitBranch className="w-4 h-4" />
+            <span>// Crafted with clean code, coffee, and creativity 🚀</span>
+          </div>
+          <div>Let's build something amazing together — your vision, my code.</div>
+        </div>
       </div>
     </div>
   )

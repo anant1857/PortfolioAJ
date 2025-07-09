@@ -1,30 +1,24 @@
-
-
-
-'use client';
-import { useState } from "react";
-import { X, Mail, User, Phone, MessageSquare } from "lucide-react";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+"use client"
+import { useState } from "react"
+import { X, Mail, User, Phone, MessageSquare } from "lucide-react"
+import { Formik, Form, Field, ErrorMessage } from "formik"
+import * as Yup from "yup"
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Name is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
+  name: Yup.string().required("Name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
   phone: Yup.string()
-    .matches(
-      /^(\+?\d{1,4}[\s-])?(?!0+\s+,?$)\d{10,13}\s*,?$/,
-      'Invalid phone number'
-    )
+    .matches(/^(\+?\d{1,4}[\s-])?(?!0+\s+,?$)\d{10,13}\s*,?$/, "Invalid phone number")
     .nullable(),
-  message: Yup.string().required('Message is required'),
-});
+  message: Yup.string().required("Message is required"),
+})
 
 const PopUpForm = ({ isOpen, onClose }) => {
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1e1e1e]/80 backdrop-blur-sm">
@@ -57,29 +51,37 @@ const PopUpForm = ({ isOpen, onClose }) => {
         {/* Form Content */}
         <div className="p-6">
           <Formik
-            initialValues={{ name: '', email: '', phone: '', message: '' }}
+            initialValues={{ name: "", email: "", phone: "", message: "" }}
             validationSchema={validationSchema}
             onSubmit={async (values, { resetForm }) => {
-              setLoading(true);
-              setSuccess('');
-              setError('');
+              setLoading(true)
+              setSuccess("")
+              setError("")
+
               try {
-                const res = await fetch('http://localhost:5000/api/contact', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                const res = await fetch("http://localhost:5000/api/contact", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
                   body: JSON.stringify(values),
-                });
-                const data = await res.json();
+                })
+
+                const data = await res.json()
+
                 if (res.ok) {
-                  setSuccess('Message sent!');
-                  resetForm();
+                  setSuccess("Message sent!")
+                  resetForm()
+                  // Close modal after 1.5 seconds
+                  setTimeout(() => {
+                    onClose()
+                  }, 1500)
                 } else {
-                  setError(data.error || 'Failed to send message.');
+                  setError(data.error || "Failed to send message.")
                 }
               } catch {
-                setError('Failed to send message.');
+                setError("Failed to send message.")
               }
-              setLoading(false);
+
+              setLoading(false)
             }}
           >
             {({ isSubmitting }) => (
@@ -99,6 +101,7 @@ const PopUpForm = ({ isOpen, onClose }) => {
                   />
                   <ErrorMessage name="name" component="div" className="text-red-400 text-xs" />
                 </div>
+
                 {/* Email Field */}
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-[#cccccc] text-sm">
@@ -114,6 +117,7 @@ const PopUpForm = ({ isOpen, onClose }) => {
                   />
                   <ErrorMessage name="email" component="div" className="text-red-400 text-xs" />
                 </div>
+
                 {/* Phone Field */}
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-[#cccccc] text-sm">
@@ -128,6 +132,7 @@ const PopUpForm = ({ isOpen, onClose }) => {
                   />
                   <ErrorMessage name="phone" component="div" className="text-red-400 text-xs" />
                 </div>
+
                 {/* Message Field */}
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-[#cccccc] text-sm">
@@ -144,6 +149,7 @@ const PopUpForm = ({ isOpen, onClose }) => {
                   />
                   <ErrorMessage name="message" component="div" className="text-red-400 text-xs" />
                 </div>
+
                 {/* Submit Button */}
                 <div className="pt-2">
                   <button
@@ -152,9 +158,10 @@ const PopUpForm = ({ isOpen, onClose }) => {
                     disabled={loading || isSubmitting}
                   >
                     <Mail size={16} />
-                    {loading || isSubmitting ? 'Sending...' : 'Send Message'}
+                    {loading || isSubmitting ? "Sending..." : "Send Message"}
                   </button>
                 </div>
+
                 {success && <div className="text-green-400 text-sm">{success}</div>}
                 {error && <div className="text-red-400 text-sm">{error}</div>}
               </Form>
@@ -163,7 +170,7 @@ const PopUpForm = ({ isOpen, onClose }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PopUpForm;
+export default PopUpForm
