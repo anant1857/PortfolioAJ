@@ -172,6 +172,7 @@ const Contact = () => {
                     </div>
                   </div>
 
+
                   {/* Formik Form */}
                   <div className="pl-12">
                     <Formik
