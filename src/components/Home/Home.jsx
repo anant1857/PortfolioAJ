@@ -1,9 +1,6 @@
-
-
-
 "use client"
 import React, { useState, useEffect } from "react"
-import { Mail, Phone, Linkedin, Github, MapPin, Folder, ChevronDown, User, Code2 } from "lucide-react"
+import { Mail, Phone, Linkedin, Github, MapPin, Folder, ChevronDown, User, Code2, Award, Briefcase } from "lucide-react"
 import PopUpForm from "../PopUpForm/PopUpForm"
 
 const Home = () => {
@@ -13,21 +10,32 @@ const Home = () => {
 
   const codeLines = [
     "const developer = {",
-    "  name: 'Anant Joshi',",
+    "  name: 'Anant Rajeshwar Joshi',",
     "  role: 'Full Stack Developer',",
     "  experience: '1+ years',",
+    "  currentCompany: 'SevenMentor Services Pvt. Ltd.',",
+    "  location: 'Pune',",
     "  specialization: [",
-    "    'Web Development',",
-    "    'MERN STACK Development',",
+    "    'MERN Stack Development',",
+    "    'Responsive Web Design',",
+    "    'RESTful API Integration',",
+    "    'UI/UX Implementation'",
     "  ],",
     "  skills: {",
-    "    frontend: ['React', 'Next.js', 'TypeScript'],",
-    "    backend: ['Node.js', 'Python', 'Solidity'],",
-    "    blockchain: ['Ethereum', 'Smart Contracts'],",
-    "    leadership: 'Tech Team Management'",
+    "    frontend: ['React.js', 'Next.js', 'HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'jQuery'],",
+    "    backend: ['Node.js', 'Express.js', 'Microservices', 'API Development'],",
+    "    database: ['MySQL', 'MongoDB'],",
+    "    tools: ['Git', 'GTMetrix', 'Version Control'],",
+    "    optimization: ['SEO', 'Page Speed', 'Core Web Vitals']",
     "  },",
-    "  passion: 'Building innovative solutions',",
-    "  recruiting: 'Global engineering talent'",
+    "  achievements: [",
+    "    'Built scalable LMS and corporate training platforms',",
+    "    'Optimized SEO and performance for increased traffic',",
+    "    'Enhanced UI/UX with form handling via Node.js',",
+    "    'Implemented cross-browser compatibility'",
+    "  ],",
+    "  passion: 'Building clean, scalable web solutions',",
+    "  currentlyWorking: true",
     "};",
   ]
 
@@ -42,7 +50,7 @@ const Home = () => {
           tempText += codeLines[currentLine][currentChar]
           setDisplayedText(tempText)
           currentChar++
-          setTimeout(typeWriter, 60)
+          setTimeout(typeWriter, 40)
         } else {
           tempText += "\n"
           setDisplayedText(tempText)
@@ -54,7 +62,7 @@ const Home = () => {
       }
     }
 
-    const timer = setTimeout(typeWriter, 500)
+    const timer = setTimeout(typeWriter, 100)
     return () => clearTimeout(timer)
   }, [])
 
@@ -123,6 +131,18 @@ const Home = () => {
             <span className="text-[#9cdcfe]">{key}</span>
             <span className="text-[#cccccc]">: </span>
             <span className="text-[#ce9178]">{value}</span>
+          </>
+        )
+      }
+
+      // Handle boolean values
+      if (value === "true" || value === "false") {
+        return (
+          <>
+            <span className="text-[#cccccc]">{parts[0].split(key)[0]}</span>
+            <span className="text-[#9cdcfe]">{key}</span>
+            <span className="text-[#cccccc]">: </span>
+            <span className="text-[#569cd6]">{value}</span>
           </>
         )
       }
@@ -257,22 +277,24 @@ const Home = () => {
               <div className="w-full grid gap-3 text-sm mb-6">
                 <div className="bg-gradient-to-r from-[#1e1e1e] to-[#252526] border border-[#2d2d30] rounded-lg p-4 hover:border-[#4fc1ff]/50 transition-all duration-300 group">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 bg-[#4fc1ff] rounded-full"></div>
+                    <Briefcase className="w-3 h-3 text-[#4fc1ff]" />
                     <div className="text-[#4fc1ff] text-xs uppercase tracking-wider font-mono">Experience</div>
                   </div>
                   <div className="text-[#cccccc] font-medium text-lg group-hover:text-[#4fc1ff] transition-colors">
-                    1.5+ Years
+                    1+ Year
                   </div>
+                  <div className="text-[#858585] text-xs mt-1">Aug 2024 - Present</div>
                 </div>
 
                 <div className="bg-gradient-to-r from-[#1e1e1e] to-[#252526] border border-[#2d2d30] rounded-lg p-4 hover:border-green-400/50 transition-all duration-300 group">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <div className="text-green-400 text-xs uppercase tracking-wider font-mono">Projects</div>
+                    <Award className="w-3 h-3 text-green-400" />
+                    <div className="text-green-400 text-xs uppercase tracking-wider font-mono">Company</div>
                   </div>
-                  <div className="text-[#cccccc] font-medium text-lg group-hover:text-green-400 transition-colors">
-                    5+ Completed
+                  <div className="text-[#cccccc] font-medium text-base group-hover:text-green-400 transition-colors">
+                    SevenMentor
                   </div>
+                  <div className="text-[#858585] text-xs mt-1">React Developer</div>
                 </div>
 
                 <div className="bg-gradient-to-r from-[#1e1e1e] to-[#252526] border border-[#2d2d30] rounded-lg p-4 hover:border-orange-400/50 transition-all duration-300 group">
@@ -283,6 +305,18 @@ const Home = () => {
                   <div className="text-[#cccccc] font-medium text-lg group-hover:text-orange-400 transition-colors">
                     MERN Stack
                   </div>
+                  <div className="text-[#858585] text-xs mt-1">Full Stack Dev</div>
+                </div>
+
+                <div className="bg-gradient-to-r from-[#1e1e1e] to-[#252526] border border-[#2d2d30] rounded-lg p-4 hover:border-purple-400/50 transition-all duration-300 group">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                    <div className="text-purple-400 text-xs uppercase tracking-wider font-mono">Education</div>
+                  </div>
+                  <div className="text-[#cccccc] font-medium text-sm group-hover:text-purple-400 transition-colors">
+                    PG-DAC, CDAC
+                  </div>
+                  <div className="text-[#858585] text-xs mt-1">B.Tech Civil Eng.</div>
                 </div>
               </div>
             </div>
@@ -302,81 +336,69 @@ const Home = () => {
           </div>
         </div>
 
-       <div className="max-w-7xl mx-auto mt-6 bg-gradient-to-br from-[#18181b] via-[#1e1e1e] to-[#18181b] border border-[#383838] rounded-lg shadow-xl p-4 sm:p-5 overflow-hidden relative">
-  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4fc1ff]/5 to-transparent animate-pulse pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto mt-6 bg-gradient-to-br from-[#18181b] via-[#1e1e1e] to-[#18181b] border border-[#383838] rounded-lg shadow-xl p-4 sm:p-5 overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4fc1ff]/5 to-transparent animate-pulse pointer-events-none"></div>
 
-  <div className="relative z-10">
-    <div className="text-[#7dd3fc] text-xs uppercase tracking-wider font-bold mb-4 flex items-center gap-2 font-mono">
-      <div className="w-1 h-4 bg-[#7dd3fc] rounded-full"></div>
-      <User className="w-4 h-4" />
-      Contact Info
-    </div>
+          <div className="relative z-10">
+            <div className="text-[#7dd3fc] text-xs uppercase tracking-wider font-bold mb-4 flex items-center gap-2 font-mono">
+              <div className="w-1 h-4 bg-[#7dd3fc] rounded-full"></div>
+              <User className="w-4 h-4" />
+              Contact Info
+            </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 text-[#cccccc] text-xs sm:text-sm">
-      
-      <a
-        href="mailto:joshianant1857@gmail.com"
-        className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <Mail className="w-4 h-4 text-[#60a5fa] group-hover:scale-110 transition-transform" />
-        <span className="font-mono group-hover:text-[#60a5fa] transition-colors break-all">
-          joshianant1857@gmail.com
-        </span>
-      </a>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 text-[#cccccc] text-xs sm:text-sm">
+              <a
+                href="mailto:joshianant1857@gmail.com"
+                className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail className="w-4 h-4 text-[#60a5fa] group-hover:scale-110 transition-transform" />
+                <span className="font-mono group-hover:text-[#60a5fa] transition-colors break-all">
+                  joshianant1857@gmail.com
+                </span>
+              </a>
 
-      <a
-        href="tel:+918847769979"
-        className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
-      >
-        <Phone className="w-4 h-4 text-[#34d399] group-hover:scale-110 transition-transform" />
-        <span className="font-mono group-hover:text-[#34d399] transition-colors">
-          +91 8847769979
-        </span>
-      </a>
+              <a
+                href="tel:+918847769979"
+                className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
+              >
+                <Phone className="w-4 h-4 text-[#34d399] group-hover:scale-110 transition-transform" />
+                <span className="font-mono group-hover:text-[#34d399] transition-colors">+91 8847769979</span>
+              </a>
 
-      <a
-        href="https://www.linkedin.com/in/anant-joshi-a847b6201/"
-        className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <Linkedin className="w-4 h-4 text-[#2563eb] group-hover:scale-110 transition-transform" />
-        <span className="font-mono group-hover:text-[#2563eb] transition-colors">
-          /in/anantjoshi
-        </span>
-      </a>
+              <a
+                href="https://www.linkedin.com/in/anant-joshi-a847b6201/"
+                className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="w-4 h-4 text-[#2563eb] group-hover:scale-110 transition-transform" />
+                <span className="font-mono group-hover:text-[#2563eb] transition-colors">/in/anantjoshi</span>
+              </a>
 
-      <a
-        href="https://github.com/anant1857"
-        className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <Github className="w-4 h-4 text-[#facc15] group-hover:scale-110 transition-transform" />
-        <span className="font-mono group-hover:text-[#facc15] transition-colors">
-          @anantjoshi
-        </span>
-      </a>
+              <a
+                href="https://github.com/anant1857"
+                className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="w-4 h-4 text-[#facc15] group-hover:scale-110 transition-transform" />
+                <span className="font-mono group-hover:text-[#facc15] transition-colors">@anant1857</span>
+              </a>
 
-      <a
-        href="https://www.google.com/maps/place/Pune,+Maharashtra,+India"
-        className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <MapPin className="w-4 h-4 text-[#f472b6] group-hover:scale-110 transition-transform" />
-        <span className="font-mono group-hover:text-[#f472b6] transition-colors">
-          Pune, Maharashtra, India
-        </span>
-      </a>
-
-    </div>
-  </div>
-</div>
-
-
+              <a
+                href="https://www.google.com/maps/place/Pune,+Maharashtra,+India"
+                className="flex items-center justify-center gap-2 sm:gap-2 p-2 rounded hover:bg-[#2d2d30]/50 transition-colors group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MapPin className="w-4 h-4 text-[#f472b6] group-hover:scale-110 transition-transform" />
+                <span className="font-mono group-hover:text-[#f472b6] transition-colors">Pune, India</span>
+              </a>
+            </div>
+          </div>
+        </div>
 
         {/* Bottom Status Bar */}
         <div className="h-6 bg-[#007acc] text-white text-xs flex items-center justify-between px-4 mt-6">
